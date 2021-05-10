@@ -1,0 +1,54 @@
+:root {  
+    --font-weight__light: 300;
+    --font-weight__regular: 400;
+    --font-weight__medium: 500;
+    --font-weight__semibold: 600;
+    --font-weight__bold: 700;
+    --font-weight__black: 800;
+  
+    // font
+    --font-size__label-tiny: 0.5rem;
+    --font-size__label-xxl-tiny: 0.65rem;
+    --font-size__label-xxxxsmall: 0.75rem;
+    --font-size__label-xxxsmall: 0.81rem;
+    --font-size__label-xxsmall: 0.9rem;
+    --font-size__label-xsmall: 1rem;
+    --font-size__label-small: 1.06rem;
+    --font-size__label-xxs-normal: 1.13rem;
+    --font-size__label-xs-normal: 1.2rem;
+    --font-size__label-normal: 1.3rem;
+    --font-size__label-xl-normal: 1.4rem;
+    --font-size__label-xxl-normal: 1.5rem;
+    --font-size__label-xs-medium: 1.6rem;
+    --font-size__label-medium: 1.7rem;
+    --font-size__label-xl-medium: 1.8rem;
+    --font-size__label-xxl-medium: 1.9rem;
+    --font-size__label-large: 2rem;
+    --font-size__label-xl-large: 2.5rem;
+    --font-size__label-xxl-large: 3rem;
+  
+    // page padding
+    --page__padding: 16px;
+    --page__padding--half: 8px;
+    --page__padding--quarter: 4px;
+    --page__padding--small: 12px;
+    --page__padding--medium: calc(var(--page__padding) + var(--page__padding) / 2);
+    --page__padding--double: calc(var(--page__padding) * 2);
+    --page__padding--large: 40px;
+    --page__padding--xlarge: calc(var(--page__padding--large) + var(--page__padding));
+    --page__padding--xxlarge: calc(var(--page__padding--large) * 2);
+    --page__padding--xxxlarge: calc(var(--page__padding--large) * 3);
+  
+    // page margin
+    --page__margin: 16px;
+    --page__margin--half: 8px;
+    --page__margin--small: 12px;
+    --page__margin--quarter: 4px;
+    --page__margin--medium: calc(var(--page__margin) + var(--page__margin) / 2);
+    --page__margin--double: calc(var(--page__margin) * 2);
+    --page__margin--large: 40px;
+    --page__margin--xlarge: calc(var(--page__margin--large) + var(--page__margin));
+    --page__margin--xxlarge: calc(var(--page__margin--large) * 2);
+    --page__margin--xxxlarge: calc(var(--page__margin--large) * 3);
+  }
+  

@@ -1,0 +1,13 @@
+<h3 class="margin-0 font-weight-medium">{{ email.from }}</h3>
+<h4 class="to">
+  <div class="ellipsis">
+    To:
+    <ng-container *ngFor="let item of email.to; let i = index">
+      {{ item }}<span *ngIf="i !== email.to.length - 1">,</span>
+    </ng-container>
+  </div>
+  <div class="date">{{ email.date | date }}</div>
+</h4>
+<h4 class="margin-0 ellipsis" [innerText]="email.subject ? email.subject : '(no subject)'"
+    appHighlight [search]="searchText" [text]="email.subject ? email.subject : '(no subject)'">
+</h4>

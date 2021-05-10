@@ -1,0 +1,10 @@
+.from {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+p {
+  white-space: pre-line;
+  font-size: var(--font-size__label-xsmall);
+}

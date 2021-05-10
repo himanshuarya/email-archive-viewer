@@ -1,0 +1,34 @@
+.search-container {
+  padding: var(--page__padding--half) var(--page__padding--small);
+
+  mat-form-field {
+    width: 25%;
+
+    mat-icon {
+      cursor: pointer;
+      font-size: var(--font-size__label-xxsmall);
+    }
+  }
+}
+
+.email-container {
+  height: 80vh;
+  margin: 10px;
+  border: 1px solid #555;
+
+  .email-list {
+    width: 25%;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: var(--page__padding--quarter) var(--page__padding);
+    }
+  }
+}

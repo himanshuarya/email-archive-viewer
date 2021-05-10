@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./app/scss/vars";
+@import '~@angular/material/theming';
+
+// Include non-theme styles for core.
+@include mat-core();
+
+// Define a theme.
+$primary: mat-palette($mat-deep-purple);
+$accent: mat-palette($mat-lime);
+$warn: mat-palette($mat-amber);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+// Include all theme styles for the components.
+@include angular-material-theme($theme);
+
+.accent-color-bg {
+  background-color: mat-color($accent);
+}
+
+.highlight {
+  background-color: mat-color($warn);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$spacing: (0, 4, 8, 12, 16, 24, 32, 40);
+$font-weight: ("light", "regular", "medium", "semibold", "bold", "black");
+
+@each $size in $spacing {
+  .padding-#{$size} {
+    padding: #{$size}px !important; // Override any other default paddings
+  }
+}
+
+@each $size in $spacing {
+  .margin-#{$size} {
+    margin: #{$size}px !important; // Override any other default margins
+  }
+}
+
+@each $weight in $font-weight {
+  .font-weight-#{$weight} {
+    font-weight: var(--font-weight__#{$weight}) !important; // Override any other default margins
+  }
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.no-results {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--font-size__label-small);
+}
