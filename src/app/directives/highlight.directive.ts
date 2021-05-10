@@ -27,13 +27,13 @@ export class HighlightDirective implements OnChanges {
       }
 
       this.renderer.setProperty(this.el.nativeElement, 'innerHTML',
-        this.replace(search.length > 0 && this.useInnerHTML ? this.el.nativeElement.getInnerHTML() : this.text, search));
+        this.replace(search.length > 0 && this.useInnerHTML ? this.el.nativeElement.innerHTML : this.text, search));
     }
   }
 
   private removePrevHighlights(): void {
     const searchRgx = new RegExp('</?span[^>]*>', 'gi');
-    this.renderer.setProperty(this.el.nativeElement, 'innerHTML', this.el.nativeElement.getInnerHTML().replace(searchRgx, ''));
+    this.renderer.setProperty(this.el.nativeElement, 'innerHTML', this.el.nativeElement.innerHTML.replace(searchRgx, ''));
   }
 
   private replace(txt: string, search: string): string {
