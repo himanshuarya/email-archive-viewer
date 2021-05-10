@@ -1,6 +1,6 @@
 <div *ngIf="email" class="padding-16">
   <h2 [innerText]="email.subject ? email.subject : '(no subject)'"
-      appHighlight [search]="searchText" [text]="email.subject ? email.subject : '(no subject)'">
+      appHighlight [search]="searchText" [text]="email.subject">
   </h2>
   <h3 class="from">
     <div class="font-weight-medium">{{ email.from }}</div>
