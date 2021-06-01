@@ -1,6 +1,6 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ArchiveHomeVm, EmailArchive } from '../entities/email.entities';
 import { EmailService } from '../service/email.service';
@@ -10,13 +10,14 @@ import { EmailService } from '../service/email.service';
   templateUrl: './archive-home-page.component.html',
   styleUrls: ['./archive-home-page.component.scss']
 })
-export class ArchiveHomePageComponent implements OnInit {
+export class ArchiveHomePageComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator)
   public paginator: MatPaginator;
 
   public vm: ArchiveHomeVm;
   public readonly pageSize = 40;
   public readonly displayedColumns: string[] = ['email'];
+  private inputSub: Subscription;
   private inputChanged: Subject<string> = new Subject<string>();
   private readonly arrowDown: string = 'ArrowDown';
   private readonly arrowUp: string = 'ArrowUp';
@@ -44,7 +45,7 @@ export class ArchiveHomePageComponent implements OnInit {
       searchText: '',
     };
 
-    this.inputChanged.pipe(
+    this.inputSub = this.inputChanged.pipe(
       debounceTime(500),
       distinctUntilChanged())
       .subscribe((input: string) => {
@@ -66,6 +67,10 @@ export class ArchiveHomePageComponent implements OnInit {
 
   public onSearch(input: string): void {
     this.inputChanged.next(input);
+  }
+
+  public ngOnDestroy(): void {
+    this.inputSub?.unsubscribe();
   }
 
   private updateResults(): void {
