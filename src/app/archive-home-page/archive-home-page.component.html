@@ -1,7 +1,8 @@
 <div class="padding-16">
   <div class="search-container">
     <mat-form-field>
-      <input matInput type="search" placeholder="Search" (input)="onSearch($event.target.value)">
+      <input matInput type="search" placeholder="Search" (input)="onSearch($event.target.value)"
+        [value]="vm.searchInput">
       <mat-icon *ngIf="!vm.searchInput" matSuffix mat-icon-button aria-label="Search">search</mat-icon>
       <mat-icon *ngIf="vm.searchInput" matSuffix mat-icon-button aria-label="Clear" (click)="onSearch('')">close
       </mat-icon>
