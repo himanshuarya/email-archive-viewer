@@ -21,7 +21,7 @@ export class HighlightDirective implements OnChanges {
     }
 
     if (this.text.length > 0) {
-      const search = this.escapeStringRegexp(this.search.toString());
+      const search = this.escapeStringRegexp(this.search);
       if (this.useInnerHTML) {
         this.removePrevHighlights();
       }
@@ -42,10 +42,6 @@ export class HighlightDirective implements OnChanges {
   }
 
   private escapeStringRegexp(str: string): string {
-    if (typeof str !== 'string') {
-      throw new TypeError('Expected a string');
-    }
-
     if (str.includes('<')) {
       str = str.replace(new RegExp('<', 'gi'), '&lt;');
     }
