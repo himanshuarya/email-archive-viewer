@@ -13,7 +13,7 @@
 
 .email-container {
   height: 80vh;
-  margin: 10px;
+  margin: var(--page__margin--small);
   border: 1px solid #555;
 
   .email-list {
