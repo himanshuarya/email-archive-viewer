@@ -17,6 +17,8 @@ export class ArchiveHomePageComponent implements OnInit, OnDestroy {
   public vm: ArchiveHomeVm;
   public readonly pageSize = 40;
   public readonly displayedColumns: string[] = ['email'];
+  private archiveEmails: EmailArchive[];
+  private currentPageIndex: number = 0;
   private inputSub: Subscription;
   private inputChanged: Subject<string> = new Subject<string>();
   private readonly arrowDown: string = 'ArrowDown';
@@ -36,11 +38,9 @@ export class ArchiveHomePageComponent implements OnInit, OnDestroy {
 
   public async ngOnInit(): Promise<void> {
     this.vm = {
-      archiveEmails: [],
       displayedEmails: [],
       filteredArchiveEmails: [],
       selectedIndex: 0,
-      currentPageIndex: 0,
       searchInput: '',
       searchText: '',
     };
@@ -53,16 +53,16 @@ export class ArchiveHomePageComponent implements OnInit, OnDestroy {
         this.updateResults();
       });
 
-    this.vm.archiveEmails = await this.emailService.getEmailArchives();
-    this.vm.filteredArchiveEmails = [...this.vm.archiveEmails];
-    this.vm.displayedEmails = this.vm.archiveEmails.slice(0, this.pageSize);
+    this.archiveEmails = await this.emailService.getEmailArchives();
+    this.vm.filteredArchiveEmails = [...this.archiveEmails];
+    this.vm.displayedEmails = this.archiveEmails.slice(0, this.pageSize);
   }
 
   public onPageChange(pageIndex: number): void {
-    this.vm.currentPageIndex = pageIndex;
+    this.currentPageIndex = pageIndex;
     this.vm.selectedIndex = 0;
-    this.vm.displayedEmails = [...this.vm.filteredArchiveEmails.slice(this.vm.currentPageIndex * this.pageSize,
-      (this.vm.currentPageIndex + 1) * this.pageSize)];
+    this.vm.displayedEmails = [...this.vm.filteredArchiveEmails.slice(this.currentPageIndex * this.pageSize,
+      (this.currentPageIndex + 1) * this.pageSize)];
   }
 
   public onSearch(input: string): void {
@@ -78,9 +78,9 @@ export class ArchiveHomePageComponent implements OnInit, OnDestroy {
     this.vm.selectedIndex = 0;
     const searchText: string = this.vm.searchInput.trim().toLowerCase();
 
-    this.vm.filteredArchiveEmails = !searchText ? [...this.vm.archiveEmails] :
-      this.vm.archiveEmails.filter((email: EmailArchive) => email.subject.toLowerCase().indexOf(searchText) > 0 ||
-        email.body.toLowerCase().indexOf(searchText) > 0);
+    this.vm.filteredArchiveEmails = !searchText ? [...this.archiveEmails] :
+      this.archiveEmails.filter((email: EmailArchive) => email.subject.toLowerCase().indexOf(searchText) >= 0 ||
+        email.body.toLowerCase().indexOf(searchText) >= 0);
 
     this.vm.displayedEmails = this.vm.filteredArchiveEmails.slice(0, this.pageSize);
     if (this.vm.displayedEmails.length > 0) {

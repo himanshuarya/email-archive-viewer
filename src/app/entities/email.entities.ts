@@ -9,11 +9,9 @@ export interface EmailArchive {
 }
 
 export interface ArchiveHomeVm {
-  archiveEmails: EmailArchive[];
   displayedEmails: EmailArchive[];
   filteredArchiveEmails: EmailArchive[];
   selectedIndex: number;
-  currentPageIndex: number;
   searchInput: string;
   searchText: string;
 }

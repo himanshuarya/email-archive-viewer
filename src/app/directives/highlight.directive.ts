@@ -10,7 +10,7 @@ export class HighlightDirective implements OnChanges {
   @Input() text: string;
   @Input() useInnerHTML = false;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   public ngOnChanges(): void {
     if (isUndefined(this.search)) {

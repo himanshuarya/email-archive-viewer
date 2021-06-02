@@ -8,11 +8,11 @@ import { EmailArchive } from '../entities/email.entities';
 })
 export class EmailService {
 
-  public constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient) { }
 
-  public async getEmailArchives(): Promise<EmailArchive[]>{
+  public async getEmailArchives(): Promise<EmailArchive[]> {
     try {
-      let responseData: any =  await this.http.get('assets/email.json').toPromise();
+      let responseData: any = await this.http.get('assets/email.json').toPromise();
       if (isDefined(responseData.data)) {
         responseData = { content: JSON.parse(responseData.data) };
       }
