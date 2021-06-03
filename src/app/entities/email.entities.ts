@@ -7,11 +7,3 @@ export interface EmailArchive {
   body: string;
   date: string;
 }
-
-export interface ArchiveHomeVm {
-  displayedEmails: EmailArchive[];
-  filteredArchiveEmails: EmailArchive[];
-  selectedIndex: number;
-  searchInput: string;
-  searchText: string;
-}

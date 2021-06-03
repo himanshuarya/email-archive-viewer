@@ -13,7 +13,7 @@ export class HighlightDirective implements OnChanges {
   constructor(private el: ElementRef, private renderer: Renderer2) { }
 
   public ngOnChanges(): void {
-    if (isUndefined(this.search)) {
+    if (isUndefined(this.search) || !this.search) {
       if (this.text.length > 0) {
         this.renderer.setProperty(this.el.nativeElement, 'innerHTML', this.text);
       }
@@ -48,6 +48,10 @@ export class HighlightDirective implements OnChanges {
 
     if (str.includes('>')) {
       str = str.replace(new RegExp('>', 'gi'), '&gt;');
+    }
+
+    if (str.includes('&')) {
+      str = str.replace(new RegExp('&', 'gi'), '&amp;');
     }
 
     return str.replace(matchOperatorsRe, '\\$&');
